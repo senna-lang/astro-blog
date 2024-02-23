@@ -1,29 +1,18 @@
 ---
 import "../styles/global.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "About";
 ---
 
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Blog</title>
-  </head>
-  <body>
-    <Header />
-    <div class="main">
-      <h1>このブログについて</h1>
-      <h2>Astroの基本的な機能を網羅したブログになります。</h2>
-      <p>
-        Astroのテスト開発としてmicroCMSでコンテンツ管理を行うブログを作成しました。
-      </p>
-    </div>
-    <Footer/>
-  </body>
-</html>
+<BaseLayout pageLayout={pageTitle}>
+  <div class="main">
+    <h1>このブログについて</h1>
+    <h2>Astroの基本的な機能を網羅したブログになります。</h2>
+    <p>
+      Astroのテスト開発としてmicroCMSでコンテンツ管理を行うブログを作成しました。
+    </p>
+  </div>
+</BaseLayout>
 
 <style>
   h1 {
