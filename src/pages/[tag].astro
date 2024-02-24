@@ -1,0 +1,35 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+//microCMS呼び出し
+import { getBlogs } from "../lib/microcms";
+const pageTitle = "記事一覧";
+
+export async function getStaticPaths() {
+  const response = await getBlogs({ fields: ["tag"] });
+  return response.contents.map((content: any) => ({
+    params: {
+      tag: content.tag,
+    },
+  }));
+}
+const { tag } = Astro.params;
+const response = await getBlogs({ fields: ["id", "title", "tag"] });
+const filteredArticle = response.contents.filter((article) => {
+  return article.tag === tag;
+});
+---
+
+<BaseLayout pageLayout={pageTitle}>
+  <main>
+    <ul>
+      {
+        filteredArticle.map((content: any) => (
+          <li>
+            <a href={content.id}>{content.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BaseLayout>
