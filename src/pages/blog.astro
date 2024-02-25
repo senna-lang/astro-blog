@@ -3,12 +3,13 @@ import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
 //microCMS呼び出し
 import { getBlogs } from "../lib/microcms";
-const response = await getBlogs({ fields: ["id", "title"] });
+const response = await getBlogs({ fields: ["id", "title",'tag'] });
 const pageTitle = "記事一覧";
 ---
 
 <BaseLayout pageLayout={pageTitle}>
   <main>
+    <h1>{pageTitle}</h1>
     <ul>
       {
         response.contents.map((content: any) => (
